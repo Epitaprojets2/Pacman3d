@@ -1,1 +1,33 @@
-Pour cette premiere soutenance j'ai télécharge un environement 3d "Japanese Otaku City" afin d'utliser la carte qu'il fournit.J'ai choisis cette carte car elle represente une ville Japonaise ce qui fait aux origines du jeu Pacman.Malheureusement cet asset est vieux et il n'est pas compatible avec les versions actuel de unity .Une grande partie de la carte n'aparaissait pas, les materiaux n'etaient pas present sur les objets 
+LA CARTE
+//J'ai apris les ceation gestion d'asset
+Pour cette premiere soutenance j'ai télécharge un environement 3d "Japanese Otaku City" afin d'utliser la carte qu'il fournit.J'ai 
+choisis cette carte car elle represente une ville Japonaise ce qui fait reference aux origines du jeu Pacman.
+[INSERER asset_thum_04_l.jpg][INSERER index.jpg]
+Malheureusement cet asset est vieux et il n'est pas compatible avec les versions actuelles de unity. 
+Une grande partie de la carte n'aparaissait pas, les materiaux n'etaient pas present sur les objets, il apparaissaient donc violet. 
+J'ai donc replace chaque texture, mis les bon materieux et rajoute des polygones car a certain endroit il y avait un morceau de la 
+carte qui manquait notamment au niveau des ponts. J'ai ensuite repare les mouvements d'un modele fournit dans l'environement mais 
+on ne s'en est finalement pas servi. 
+
+LE RESEAU 
+
+J'ai ensuite commencer a m'interesser au multijoeur, j'ai Unity- Multiplayer Networking afin 
+d'essayer d'adapter cette methode a notre jeu.
+Premierement j'ai ajouter un empty GameObjet au projet que j'ai renome Network 
+Manager ensuite je lui ai ajoute les components Network Manger et Network manager HUD. Le Network Manager le jeu en reseau.
+[INSERER 002-networkmanager.png]
+Le Network Manager HUD fonctionne avec le network manager afin de fournir une interface de controle du jeu en reseau .
+[INSERER 003-networkmanagerhud.png]
+J'ai ensuite ajoute le component NetworkIdentity au joueur ,ce component permet d'identifier et de faire reconnaitre un objet dans 
+le reseau ici le joeur.
+J'ai mis Local Player Autority a True pour permettre au client de controler le GameObjet Player.
+[INSERER 006-networkidentity.png]
+Il fallait ensuite que le joeur soit enregistre dans le reseau ,pour cela j'ai enregiste Player dans Network Manager. Ce qui va permettre .
+[INSERER 007-add-player-prefab-to-nwmgr.png] 
+J'ai ensuite teste le reseau pour voir si ce que j'avais fais .
+
+L'IA
+J'ai commence a travailler sur l'intelligence artificielle ,j'ai conmmence a travaille sur le niveau facile avec des deplacement d'enemies (les voitures) predefinies.mais j'ai rencontre des problemes notamment celui des coordonnes 
+[INSERER PHOTO VOITURE]
+
+
