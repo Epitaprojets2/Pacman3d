@@ -11,23 +11,29 @@ on ne s'en est finalement pas servi.
 
 LE RESEAU 
 
-J'ai ensuite commencer a m'interesser au multijoeur, j'ai Unity- Multiplayer Networking afin 
+J'ai ensuite commence a m'interesser au multijoeur, j'ai Unity- Multiplayer Networking afin 
 d'essayer d'adapter cette methode a notre jeu.
 Premierement j'ai ajouter un empty GameObjet au projet que j'ai renome Network 
-Manager ensuite je lui ai ajoute les components Network Manger et Network manager HUD. Le Network Manager le jeu en reseau.
+Manager ensuite je lui ai ajoute les components Network Manager et Network manager HUD. Le Network Manager gere le jeu en reseau.
 [INSERER 002-networkmanager.png]
-Le Network Manager HUD fonctionne avec le network manager afin de fournir une interface de controle du jeu en reseau .
+Le Network Manager HUD fonctionne avec le network manager afin de fournir une interface de controle de l'etat du jeu en reseau .
 [INSERER 003-networkmanagerhud.png]
-J'ai ensuite ajoute le component NetworkIdentity au joueur ,ce component permet d'identifier et de faire reconnaitre un objet dans 
+J'ai ensuite ajoute le component NetworkIdentity au joueur, ce component permet d'identifier et de faire reconnaitre un objet dans 
 le reseau ici le joeur.
-J'ai mis Local Player Autority a True pour permettre au client de controler le GameObjet Player.
+Ensuite, j'ai mis Local Player Autority a True pour permettre au client de controler le GameObjet Player.
 [INSERER 006-networkidentity.png]
-Il fallait ensuite que le joeur soit enregistre dans le reseau ,pour cela j'ai enregiste Player dans Network Manager. Ce qui va permettre .
+Il fallait ensuite que le jouer soit enregistre dans le reseau ,pour cela j'ai enregiste Player dans Network Manager. Ce qui va permettre de le faire apparaitre dans la scene.
 [INSERER 007-add-player-prefab-to-nwmgr.png] 
-J'ai ensuite teste le reseau pour voir si ce que j'avais fais .
+J'ai ensuite modifie le script de Player en ajoutant le namespace UnityEngine.Networking et change MonoBehavior en NetworkBehavior ainsi qu'une condition qui permet de controler uniquement son joueur .
+Dans player j,ai ajoute le component Network Transform qui permet de synchroniser les deplacements,rotations dans le reseau.
+[INSERER 009-network_transform]
+J'ai par la suite teste le reseau pour verifier que ce que j'ai fait fontionne. Probleme de camera ,les deux joeur on la meme camera alors qu'il y en a une par joeur . J'ai resolue ce probleme mettant un script dans player qui desactive toute les cameras sauf celle que notre joueur utilise .Le seule probleme qu'il reste est la synchronisation des animations dans le reseau
 
 L'IA
-J'ai commence a travailler sur l'intelligence artificielle ,j'ai conmmence a travaille sur le niveau facile avec des deplacement d'enemies (les voitures) predefinies.mais j'ai rencontre des problemes notamment celui des coordonnes 
-[INSERER PHOTO VOITURE]
+J'ai commence a travailler sur l'intelligence artificielle ,j'ai travaillé le niveau facile avec des deplacement d'enemies (les voitures) predefinies, mais j'ai rencontre des problemes notamment celui des coordonnes qui ne corespondais pas a ceux des deplacments.j'ai corrige ce probleme et fais un chemin .[INSERER path]
+[INSERER VOITURES]
+Pour arriver a ce resultat,j'ai cree un gameobjet path avec des gameobjet enfants node qui sont les differents points par lesquels la voiture va passer (pour l'instant je n'ai pas mis de rotation pendant le trajet ,le vehicule est donc immobile et suit la trajectoire ).
+J'ai aussi utilisé Gizmos qui permet de visualiser le chemin.
+Le script CarEngine sert a deplacer la voiture ,je l'ai ajouter a une voiture au hasard  afin qu'elle suive le chemin
 
 
