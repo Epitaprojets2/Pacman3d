@@ -1,8 +1,14 @@
 Etant en charge de la musiques et des bruitages je me suis mis a rechercher des musiques et des sons libres d'acces.
 Certaines musiques ont ete modifier a l'aide du logiciel audacity afin de correspondre au mieux a l'environnement du jeu.
+Les modification se resume surtout a du basique, j'ai coupe les partie de chanson et n'ai garde que la partie musique, je me suis 
+ensuite lancer dans la restructuration de la musique afin que celle ci ne soit pas trop courte et de telle maniere que l'on ne 
+puisse pas remarquer les changements ou coupures de celle-ci.
 Grace a ca nous avons des lors acces a des musiques et sons libres d'auteurs et adapte a notre jeu.
 J'ai aussi commencer a me pencher sur comment implementer des sons et des musiques sur unity et comment les entendre de maniere 
-simultane.
-J'ai aussi debuter la creation du site internet.
-Je me suis aussi lacer dans la modification d'image afin d'avoir une jaquette du jeu et des images pour les temps de 
-elechargement.
+simultane car il est prevue qu'il y ait une musique pour l'environment sonore et des effets sonore en fonction de chaque action 
+comme par exemple : Pacman mangeant une gum , la police qui se rapproche ou encore les cris des passants se faisant ecraser.
+J'ai aussi debuter la creation du site internet et surtout l'apprentissage du code HTML et du code CSS. Notre but est de creer un 
+vrai site internet fais a la main et non un sie internet prefabriquer fonctionnant avec des templates qui ont pour but de nous 
+macher la plus grande partie du travail : la programmation.
+Je me suis aussi lancer dans la modification d'image a l'aide de gimp afin d'avoir une jaquette du jeu et des images pour les temps 
+de telechargement.
