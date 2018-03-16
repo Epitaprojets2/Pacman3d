@@ -34,6 +34,6 @@ J'ai commence a travailler sur l'intelligence artificielle ,j'ai travaillé le n
 [INSERER VOITURES]
 Pour arriver a ce resultat,j'ai cree un gameobjet path avec des gameobjet enfants node qui sont les differents points par lesquels la voiture va passer (pour l'instant je n'ai pas mis de rotation pendant le trajet ,le vehicule est donc immobile et suit la trajectoire ).
 J'ai aussi utilisé Gizmos qui permet de visualiser le chemin.
-Le script CarEngine sert a deplacer la voiture ,je l'ai ajouter a une voiture au hasard  afin qu'elle suive le chemin
+Le script CarEngine sert a deplacer la voiture ,je l'ai ajouter a une voiture au hasard  afin qu'elle suive le chemin predefini.
 
 
