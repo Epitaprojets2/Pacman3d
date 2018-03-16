@@ -1,13 +1,13 @@
 LA CARTE
-//J'ai apris les ceation gestion d'asset
-Pour cette premiere soutenance j'ai télécharge un environement 3d "Japanese Otaku City" afin d'utliser la carte qu'il fournit.J'ai 
-choisis cette carte car elle represente une ville Japonaise ce qui fait reference aux origines du jeu Pacman.
+
+Pour cette premiere soutenance j'ai télécharge un environement 3d "Japanese Otaku City" afin d'utliser la carte qu'il fournit.
+J'ai choisis cette carte car elle represente une ville Japonaise ce qui fait reference aux origines du jeu Pacman.
 [INSERER asset_thum_04_l.jpg][INSERER index.jpg]
 Malheureusement cet asset est vieux et il n'est pas compatible avec les versions actuelles de unity. 
 Une grande partie de la carte n'aparaissait pas, les materiaux n'etaient pas present sur les objets, il apparaissaient donc violet. 
 J'ai donc replace chaque texture, mis les bon materieux et rajoute des polygones car a certain endroit il y avait un morceau de la 
 carte qui manquait notamment au niveau des ponts. J'ai ensuite repare les mouvements d'un modele fournit dans l'environement mais 
-on ne s'en est finalement pas servi. 
+on ne s'en est finalement pas servi. Cela m'a permis d'apprendre la creation des assets ,les mouvements ainsi que les materiaux dans Unity
 
 LE RESEAU 
 
@@ -27,13 +27,17 @@ Il fallait ensuite que le jouer soit enregistre dans le reseau ,pour cela j'ai e
 J'ai ensuite modifie le script de Player en ajoutant le namespace UnityEngine.Networking et change MonoBehavior en NetworkBehavior ainsi qu'une condition qui permet de controler uniquement son joueur .
 Dans player j,ai ajoute le component Network Transform qui permet de synchroniser les deplacements,rotations dans le reseau.
 [INSERER 009-network_transform]
-J'ai par la suite teste le reseau pour verifier que ce que j'ai fait fontionne. Probleme de camera ,les deux joeur on la meme camera alors qu'il y en a une par joeur . J'ai resolue ce probleme mettant un script dans player qui desactive toute les cameras sauf celle que notre joueur utilise .Le seule probleme qu'il reste est la synchronisation des animations dans le reseau
+J'ai par la suite teste le reseau pour verifier que ce que j'ai fait fontionne.Probleme de camera, les deux joeurs ont la meme camera alors qu'il y en a une par joeur. J'ai resolue ce probleme en mettant un script dans player qui desactive toute les cameras sauf celle que notre joueur utilise. Le seule probleme qu'il reste est la synchronisation des animations dans le reseau
 
 L'IA
-J'ai commence a travailler sur l'intelligence artificielle ,j'ai travaillé le niveau facile avec des deplacement d'enemies (les voitures) predefinies, mais j'ai rencontre des problemes notamment celui des coordonnes qui ne corespondais pas a ceux des deplacments.j'ai corrige ce probleme et fais un chemin .[INSERER path]
-[INSERER VOITURES]
+
+J'ai commence a travailler sur l'intelligence artificielle ,le niveau facile avec des deplacements de voitures predefinies, mais j'ai rencontre des problemes notamment celui des coordonnes qui ne corespondaient pas a ceux des deplacements.j'ai corrige ce probleme et fais un chemin .[INSERER path][INSERER VOITURES]
 Pour arriver a ce resultat,j'ai cree un gameobjet path avec des gameobjet enfants node qui sont les differents points par lesquels la voiture va passer (pour l'instant je n'ai pas mis de rotation pendant le trajet ,le vehicule est donc immobile et suit la trajectoire ).
-J'ai aussi utilisé Gizmos qui permet de visualiser le chemin.
-Le script CarEngine sert a deplacer la voiture ,je l'ai ajouter a une voiture au hasard  afin qu'elle suive le chemin predefini.
+A l'inverse de Update() qui ne s'execute que dans le jeu, OnDrawGizmos() s'execute dans l'editeur ce qui permet de visualiser le chemin pour le modifier plus facilement, dans mon cas j'ai utilise OndrawGizmosSelected() qui est identique a OndrawGizmos() sauf qu'elle permet de visualiser le cheminuniquement lorsque l'on selectionne le gameobjet path ce qui est plus pratique.
+Gizmos m'a permet de visualiser le chemin en dessinant les lignes entre les noeuds que j'ai mis sous forme de sphere. Il y a eu un probleme quand je voulais tracer les lignes entre les noeuds car les lignes etaient trace entre le noeud precedent et le suivant mais quand on est au noeud 0 il n'y a pas de precedent. Pour contourner ce probleme j'ai fais en sorte que le noeud qui precede le premier soit le dernier   
+Le script CarEngine sert a deplacer la voiture, je l'ai ajouter a une voiture au hasard ce qui m'a permis d'enregistrer le chemin predefini dans le champ path fournit par CarEngine afin qu'elle suive ce chemin predefini par path.
+Le principe est simple tant que on pas sur le noeud cible on avance vers lui, si on est sur un noeud on cible le prochain noeud.
+Il reste le probleme de la rotation de la voiture, j'ai fais des recherches et une solution pourrait etre l'utilisation de raycast.
+
 
 
