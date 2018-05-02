@@ -1,8 +1,31 @@
 Site internet : 
+
 J'ai créé le site internet en plusieurs fois dans un premier temps ce n'etait qu'une page simple permettant l'installation et la 
 présentation du projet.
 J'ai rapidement étudier comment avec le language CSS je pouvais rendre le tout plus présentable mettant en place un systeme de page 
 et de boutons pour passer de l'une a l'autre. J'ai ensuite fais la mise en forme pour avoir un joli fond et des boutons plus facile 
 a remarquer. Sur les recommandations de benjamin et grace a son aide nous avons fais une page unique dans le style actuel avec 
 trois zones : la gauche pour les membres du projet et le logo de l'ecole , le milieu pour les infos et les boutons utiles et a 
-droite pour les nouveauté.
+droite pour les nouveautés.
+En fond d'ecran se trouve la ville presente dans le jeu et le logo de la page est notre modele pacman prenant la pose.
+
+###################
+
+Le menu :
+
+Je me suis aussi charger du menu le fond est ce qui sera notre jaquette de jeu et les boutons sont ceux implanté par Adam.
+
+###################
+
+La musique :
+
+La musique est une part importante de notre jeu c'est pourquoi plusieurs musiques sont utilisé : pour le menu une musique de 
+rappelant le RAP , Pour le jeu une musique de type rock assez energique et losque pacman se fait poursuivre une musique rock tres 
+energique.
+
+###################
+
+Les effets sonores :
+
+En plus de la musique le jeu regorgera d'effet sonore tous deja selectionner et en cours de mise en place ou deja mis en place pour 
+certains : un bruit de skate pour notre pacman qui viendra se meler a la musique ( en développement ), les sirenes de polices seront perceptible et le volume augmentera au fur et a mesure que la voiture sera proche ou diminuera si elle est loin ( présent ), les passants une fois ecrase hurleront a mort ( en développement ) et les gum recupere declencheront le bruit originel de pacman mangeant un fruit ( en développement ).
