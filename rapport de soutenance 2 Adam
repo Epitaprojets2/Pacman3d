@@ -1,38 +1,68 @@
-Pour cette deuxième soutenance j'ai travaillé sur les déplacements. Ils ont été amélioré en ajoutant des rotations aux voitures, 
-elles roulent maintenant dans le sens de leurs déplacements, les roues tournent et s'orientent dans le sens du déplacement.
-J'ai aussi avancé sur la partie multijoueur en synchronisant les animations dans le réseau ce qui permet à chaque joueur de voir 
-les animations de son personnage lorsqu'il saute ou cour ainsi que celles des autres joueurs présents dans la partie.
-J'ai fait des chemins supplémentaires ce qui permet d'avoir plus de variétés dans les déplacements des voitures 
+Pour cette deuxième soutenance j'ai travaillé sur les déplacements. Ils ont été amélioré en ajoutant des rotations aux voitures et aux roues.
+Les voitures roulent maintenant dans la direction de leurs déplacements, les roues tournent et s'orientent aussi dans la direction du 
+déplacement. J'ai aussi avancé sur la partie multijoueur en synchronisant les animations dans le réseau ce qui permet à chaque joueur de 
+voir les animations de son personnage lorsqu'il saute ou cour ainsi que celles des autres joueurs présents dans la partie.
+J'ai fait des chemins supplémentaires ce qui permet d'avoir une plus grandes variétés dans les déplacements des voitures 
 mais cela peut causer des collisions entre les voitures, j'ai donc dû faire attention à ce qu'il n'y ait pas d'accident.
 
 LES ROTATIONS:
-Pour ajouter des rotations aux voitures ,j'ai crée des gameobject aux emplacments de chaque roues ,j'ajoute le component 
-WheelCollider et j'ajuste radian des collider en fonction de la taille ddes roues pour reproduire au mieu la physique des roues 
-d'une voiture ....
-
-Pour améliorer les déplacements des voitures j'ai diminuer la hauteur de leur centre de gravité ce qui permet à la voiture de 
-ne pas se retourner pendant un virage sérré
+Pour ajouter des rotations aux voitures, j'ai créé des gameobject aux emplacements de chaque roue, j'ajoute le component WheelCollider et 
+j'ajuste radian des collider en fonction de la taille des roues et la distance des suspensions pour reproduire au mieu la physique des roues 
+d'une voiture. J'ai ajouté un Mesh Collider à la carrosserie de la voiture qui sert pour les collisions. 
+Il a la proprité Convexe qui permet de se limiter à 255 triangles, nous n'avons pas besoin de collisions précises. 
+[INSERER wheelcollider et mescollider.png]
+J'ai aussi fait l'ajout du component Rigidbody avec la gravité qui permet de soumettre la voiture au moteur physique de unity.
+Ici nous aurons des collisions et la gravité.
+Maintenant on veut que la voiture se déplace dans la direction du prochain noeud et ainsi qu'elle pivote dans les virages.
+pour cela on utilise la fonction InverseTransformPoint() qui permet de recupérer le vecteur relatif au deplacement vers le prochain noeud.
+Notre nouvelle orientation est ce l'abiscisse de ce vecteur divisé par sa longueur le tout multiplié par l'angle de rotation maximum.
+On applique ensuite cette orientation aux collider des deux roues avant. On cherche ensuite à ce que les roues tournent et pivote en suivant 
+les colliders. Pour cela on crée un nouveau script Car_wheels que l'on va directement appliquer aux roues. 
+Pour chaque roue nous mettons son wheelcollider associé et grâce à la fonction GetWorldPose() on récupère un quaternion qui correspond à 
+la rotation du wheelcollider associé .On applique cette rotation à notre roue de façon à ce qu'elles suivent 
+les mouvements du wheelcollider qui lui est associé.
+J'ai aussi travaillé sur d'autres aspects des déplacements comme la vitesse. 
+Grâce à cette formule "2 * Mathf. PI * wheelFL.radius * wheelFL.rpm * 60 / 1000" (ici wheelFL=wheelcollider de la roue avant gauche) 
+je calcule la vitesse actuelle de la voiture. Si la vitesse actuelle est supérieure ou égale à la vitesse maximale définie en paramètre, 
+on met la puissance du moteur à 0 sinon on la met au maximum aussi défini en paramètre. 
+Pour que les changements de noeuds cible ne soient pas trop visibles, j'ai ajouté une petite fonction qui permet de passer d'un noeud 
+à l'autre un peu avant d'avoir attend le noeud cible .Pour améliorer les déplacements des voitures j'ai diminué la hauteur de leur 
+centre de gravité ce qui permet à la voiture de ne pas se retourner pendant un virage serré.
 
 
 
 
 
 LES ANIMATIONS EN RÉSEAU:
-Jusqu'à présent nous n'avions pas résolue le problème des animations dans la partie multijoueur, il n'y avait que le joueur local
-qui etait animé.Pour regler ce probleme j'ai utilisé  les attributs "[Command]" et "[ClientRpc]" ainsi que des fonctions.
-"[Commnad]" est un attribut qui peut être mis sur les méthodes des classes NetworkBehaviour pour leur permettre d'être lancées 
+Jusqu'à présent nous n'avions pas résolu le problème des animations dans la partie multijoueur, 
+il n'y avait que le joueur local qui était animé. Pour régler ce problème j'ai utilisé  les attributs "[Command]" et "[ClientRpc]" 
+ainsi que des fonctions.
+"[Command]" est un attribut qui peut être mis sur les méthodes des classes NetworkBehaviour pour leur permettre d'être lancées 
 sur le serveur en envoyant une commande à partir d'un client. Les fonctions [Command] sont lancée sur le joueur associé à une 
 connexion. Les arguments de l'appel de commande sont sérialisés à travers le réseau, de sorte que la fonction serveur est lancée 
 avec les mêmes valeurs que la fonction sur le client. Ces fonctions doivent commencer par le préfixe "Cmd" et ne peuvent pas être 
-statiques."[ClientRpc]" est aussi un attribut qui peut être mis sur les méthodes des classes NetworkBehaviour pour leur permettre
+statiques.
+"[ClientRpc]" est aussi un attribut qui peut être mis sur les méthodes des classes NetworkBehaviour pour leur permettre
 d'être lancées sur les clients à partir d'un serveur. Les fonctions [ClientRPC] sont appelées par code sur les serveurs 
 Unity Multiplayer, puis lancées sur les GameObjects correspondants sur les clients connectés au serveur. 
 Les arguments de l'appel RPC sont sérialisés sur le réseau, de sorte que la fonction client est invoquée avec les mêmes valeurs 
 que la fonction sur le serveur. Ces fonctions doivent commencer par le préfixe "Rpc" et ne peuvent pas non-plus être statiques.
-Pour synchroniser les animation j'ai creer une fonction [ClientRPC] et [Command] pour chaque animation et (test is Serveur...)
+Pour synchroniser les animation j'ai creer une fonction [ClientRPC] et [Command] pour chaque animation et dans la fonction Update 
+j'execute les [Command] si on est Client, sinon si on est Serveur j'execute les [ClientRPC].
+
 
 
 LES CHEMINS:
+Pour augmenter le trafic j'ai besoin de plus de trajet different sans pour autant que les voitures facent des acccidents pour cela j'ai 
+rajouté plusieur chemins avec des tajectoires varié ,chaque chemin a sa couleur spécifique .Pour créer un chemin c'est assez simple 
+mais cela prend beaucoup de temps .il faut créer un gameobjet Path et lui ajouter le scipt du même nom ensuite on va lui rajouter 
+plusieur empty gameobjet nodes qui serviront à former le chemin.L'asset que Benjamin a fait qui permet de voir où chaque voiture 
+peut aller grâce au mesh collider de la carte, m'a été très utile. Comme je le disais juste avant créer un chemin est assez long car 
+il faut que chaque noeud soit bien placé et qu'il n'y ait pas de probleme avec les autres voitures pour que la trajectoire de la voiture 
+soit correcte.
+[INSERER path'.png]
+
+
 
 
 
